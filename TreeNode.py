@@ -1,16 +1,20 @@
 class TreeNode():
-    def __init__(self, gini, c_label=None, split_feature=None, split_value=None):
+    def __init__(self, gini, gain=0, c_label=None, split_feature=None, split_value=None):
         """
         Class to initialize a TreeNode. 
 
         Args:
             gini: Gini index of the node. 
+            gain: Gini gain (impurity reduction) from the split.
             class_label: Majority class label - only used for the leaf nodes.
             split_feature: Index of the feature to split on (if not leaf node)
             split_value: Threshold value to split on (if not lead node)
         """
         # Gini index to determine quality of the split
         self.gini = gini
+
+        # Gini gain for the node
+        self.gain = gain
 
         # Class label - majority class label which is only used for leaf node
         self.c_label = c_label
