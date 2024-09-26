@@ -28,7 +28,7 @@ if __name__ == "__main__":
     x, y = pre_process(data)
 
     # Initiate DecisionTree with nmin, minleaf, en nfeat
-    tree = DecisionTree(nmin=2, minleaf=1, nfeat=3)
+    tree = DecisionTree(nmin=2, minleaf=1, nfeat=5)
 
     # Fit the decision tree 
     tree.fit(x, y)

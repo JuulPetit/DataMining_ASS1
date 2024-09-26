@@ -126,6 +126,7 @@ class DecisionTree():
 
             # Loop over each threshold value to evaluate the split
             for threshold in thresholds:
+                
                 # Split the data based on the current threshold
                 left_split = x[:, feature] < threshold
                 right_split = ~left_split
@@ -185,7 +186,8 @@ class DecisionTree():
             return TreeNode(gini=self._gini(y), c_label=majority_class)
 
         # Otherwise, create the left and right children recursively based on best feature and threshold
-        left_split = x[:, split_feature] < split_feature
+        left_split = x[:, split_feature] < split_value
+  
         right_split = ~left_split
         
         # Check whether left and right split contain data
