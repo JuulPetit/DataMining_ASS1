@@ -126,7 +126,20 @@ class DecisionTree():
 
             # Loop over each threshold value to evaluate the split
             for threshold in thresholds:
+                # Select the feature column values
+                feature_column = x[:, feature]
+                filtered_values = feature_column[feature_column < threshold]
+
+                # Check if filtered_values is not empty
+                if filtered_values.size == 0:
+                    # if empty skip this threshold
+                    continue
                 
+                # Select the highest feature value below threshold
+                max_value = np.max(filtered_values)
+                # Update the threshold value to be the exact middle between max_value and threshold
+                threshold = (threshold + max_value) / 2
+                print(f"Thresholdvalue:", threshold)
                 # Split the data based on the current threshold
                 left_split = x[:, feature] < threshold
                 right_split = ~left_split
@@ -187,7 +200,6 @@ class DecisionTree():
 
         # Otherwise, create the left and right children recursively based on best feature and threshold
         left_split = x[:, split_feature] < split_value
-  
         right_split = ~left_split
         
         # Check whether left and right split contain data
